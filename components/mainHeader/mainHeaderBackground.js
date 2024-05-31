@@ -1,4 +1,4 @@
-import styles from "@/components/mainHeaderBackground.module.css";
+import styles from "@/components/mainHeader/mainHeaderBackground.module.css";
 export function MainHeaderBackground() {
   return (
     <div className={styles["header-background"]}>

@@ -1,6 +1,5 @@
-import MainHeader from "@/components/mainHeader";
+import MainHeader from "@/components/mainHeader/mainHeader";
 import "./globals.css";
-import { MainHeaderBackground } from "@/components/mainHeaderBackground";
 
 export const metadata = {
   title: "Food Hub",
@@ -11,7 +10,6 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <MainHeaderBackground />
         <MainHeader />
         {children}
       </body>
