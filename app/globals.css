@@ -11,12 +11,14 @@
     background: radial-gradient(#282c34, #282c34);
   }
   
-  .not-found {
+  .not-found,
+  .error {
     margin-top: 5rem;
     text-align: center;
   }
   
-  .not-found h1 {
+  .not-found h1,
+  .error h1{
     font-size: 5rem;
     margin: 0px;
     font-weight: 900;
@@ -31,7 +33,8 @@
     font-family: 'Montserrat', sans-serif;
   }
   
-  .not-found p {
+  .not-found p,
+  .error p{
     font-size: 1.5rem;
     font-weight: 500;
     color: #ddd8d8;
