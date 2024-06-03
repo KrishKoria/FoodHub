@@ -1,8 +1,12 @@
 import ImageProvider from "@/components/imageprovider/imageProvider";
 import styles from "./page.module.css";
 import { getMeal } from "@/lib/meals";
+import { notFound } from "next/navigation";
 export default async function MealsSlugPage({ params }) {
   const meal = await getMeal(params.slug);
+  if (!meal) {
+    notFound();
+  }
   return (
     <>
       <header className={styles.header}>
