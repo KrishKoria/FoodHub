@@ -2,8 +2,13 @@
 import { CldImage, CldUploadButton } from "next-cloudinary";
 import { useState } from "react";
 import styles from "./imagePicker.module.css";
-export default function ImagePicker() {
+export default function ImagePicker({ onImageUpload }) {
   const [resource, setResource] = useState();
+  const handleSuccess = (result, { widget }) => {
+    setResource(result?.info);
+    onImageUpload(result?.info);
+    widget.close();
+  };
   return (
     <div className={styles.picker}>
       <div className={styles.controls}>
@@ -11,10 +16,7 @@ export default function ImagePicker() {
           className={styles.button}
           type="button"
           uploadPreset="myuploadpreset"
-          onSuccess={(result, { widget }) => {
-            setResource(result?.info);
-            widget.close();
-          }}
+          onSuccess={handleSuccess}
         >
           Pick an image
         </CldUploadButton>

@@ -1,7 +1,20 @@
+"use client";
 import ImagePicker from "@/components/images/imagePicker";
 import styles from "./page.module.css";
-
+import { shareMeal } from "@/lib/actions";
+import { useState } from "react";
 export default function ShareMealPage() {
+  const [uploadedImage, setUploadedImage] = useState(null);
+
+  const handleImageUpload = (imageInfo) => {
+    setUploadedImage(imageInfo);
+  };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    formData.append("image_public_id", uploadedImage.public_id);
+    shareMeal(formData);
+  };
   return (
     <>
       <header className={styles.header}>
@@ -11,15 +24,15 @@ export default function ShareMealPage() {
         <p>Or any other meal you feel needs sharing!</p>
       </header>
       <main className={styles.main}>
-        <form className={styles.form}>
+        <form className={styles.form} onSubmit={handleSubmit}>
           <div className={styles.row}>
             <p>
               <label htmlFor="name">Your name</label>
-              <input type="text" id="name" name="name" required />
+              <input type="text" id="name" name="creator" required />
             </p>
             <p>
               <label htmlFor="email">Your email</label>
-              <input type="email" id="email" name="email" required />
+              <input type="email" id="email" name="creator_email" required />
             </p>
           </div>
           <p>
@@ -39,7 +52,7 @@ export default function ShareMealPage() {
               required
             ></textarea>
           </p>
-          <ImagePicker />
+          <ImagePicker onImageUpload={handleImageUpload} />
           <p className={styles.actions}>
             <button type="submit">Share Meal</button>
           </p>

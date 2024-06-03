@@ -4,7 +4,7 @@ import UniqueValidator from "mongoose-unique-validator";
 const mealSchema = new mongoose.Schema({
   slug: { type: String, required: true },
   title: { type: String, required: true, unique: true },
-  image: { type: String, required: true },
+  image_public_id: { type: String, required: true },
   summary: { type: String, required: true },
   instructions: { type: String, required: true },
   creator: { type: String, required: true },
