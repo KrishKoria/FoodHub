@@ -7,15 +7,6 @@ export async function POST(req) {
   await dbConnect();
   const data = await req.json();
   console.log("Data:", data);
-  let existingUser;
-  try {
-    existingUser = await Meals.findOne({ email: data.email });
-  } catch (err) {
-    console.log(err);
-  }
-  if (existingUser) {
-    return NextResponse.json({ success: false, error: "User already exists" });
-  }
   const createdMeal = new Meals({
     title: data.title,
     slug: data.slug,
@@ -28,7 +19,7 @@ export async function POST(req) {
   console.log("Created Meal:", createdMeal);
   try {
     const response = await createdMeal.save();
-    return NextResponse.json({ success: true, data: response });
+    return NextResponse.json({ success: true });
   } catch (error) {
     return NextResponse.json({ success: false, data: error });
   }
