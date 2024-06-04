@@ -1,7 +1,8 @@
 import { dbConnect } from "@/lib/meals";
 import { Meals } from "@/models/Models";
 import { NextResponse } from "next/server";
-
+export const dynamic = "force-dynamic";
+export const revalidate = 1;
 export async function GET(context) {
   const url = context.url;
   const slug = url.split("/").pop();
