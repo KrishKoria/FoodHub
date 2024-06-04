@@ -13,6 +13,7 @@ export default function ImagePicker({ onImageUpload }) {
     <div className={styles.picker}>
       <div className={styles.controls}>
         <CldUploadButton
+          config={{ allowedFormats: ["png", "jpeg"] }}
           className={styles.button}
           type="button"
           uploadPreset="myuploadpreset"
