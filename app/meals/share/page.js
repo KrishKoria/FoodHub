@@ -3,6 +3,7 @@ import ImagePicker from "@/components/images/imagePicker";
 import styles from "./page.module.css";
 import { shareMeal } from "@/lib/actions";
 import { useState } from "react";
+import MealsFormSubmit from "@/components/meals/mealsSubmitHandlers";
 export default function ShareMealPage() {
   const [uploadedImage, setUploadedImage] = useState(null);
 
@@ -54,7 +55,7 @@ export default function ShareMealPage() {
           </p>
           <ImagePicker onImageUpload={handleImageUpload} />
           <p className={styles.actions}>
-            <button type="submit">Share Meal</button>
+            <MealsFormSubmit />
           </p>
         </form>
       </main>
