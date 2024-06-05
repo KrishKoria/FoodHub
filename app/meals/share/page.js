@@ -1,26 +1,38 @@
 "use client";
+
 import ImagePicker from "@/components/images/imagePicker";
 import styles from "./page.module.css";
 import { shareMeal } from "@/lib/actions";
 import { useState } from "react";
 import MealsFormSubmit from "@/components/meals/mealsSubmitHandlers";
 import { Alert, AlertTitle } from "@mui/material";
-import { ErrorBoundary } from "next/dist/client/components/error-boundary";
+
 export default function ShareMealPage() {
   const [uploadedImage, setUploadedImage] = useState(null);
   const [error, setError] = useState(null);
+
   const handleImageUpload = (imageInfo) => {
     setUploadedImage(imageInfo);
   };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
-    formData.append("image_public_id", uploadedImage.public_id);
+    if (uploadedImage) {
+      formData.append("image_public_id", uploadedImage.public_id);
+    } else {
+      setError("Please upload an image.");
+      return;
+    }
     const res = await shareMeal(formData);
     if (!res.success) {
       setError(res.message);
+    } else {
+      setError(null);
+      // Handle successful submission (e.g., navigate to a success page or reset form)
     }
   };
+
   return (
     <>
       <header className={styles.header}>
