@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# FoodHub
 
-## Getting Started
+## Description
 
-First, run the development server:
+FoodHub is an innovative Recipe Sharing platform that allows food enthusiasts to share and discover new recipes. Users can upload their own recipes with accompanying images, view recipes shared by others Built with Next.js 14, FoodHub ensures a fast and responsive user experience. It leverages Cloudinary for efficient image storage and MongoDB for robust data management. Whether you're a home cook or a professional chef, FoodHub is the perfect place to explore culinary creativity.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Recipe Sharing**: Users can share their own recipes with detailed instructions and images.
+- **Recipe Discovery**: Browse and search for recipes shared by other users.
+- **Image Storage**: Uses Cloudinary to store and manage images efficiently.
+- **Data Management**: Utilizes MongoDB for storing user and recipe information.
+- **Responsive Design**: Built with Next.js 14 to ensure a smooth and responsive experience across all devices.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Installation Instructions
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1. Clone the repository:
 
-## Learn More
+   ```bash
+   git clone https://github.com/KrishKoria/FoodHub.git
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+2. Navigate into the project directory:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```bash
+   cd FoodHub
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+3. Install the dependencies:
 
-## Deploy on Vercel
+   ```bash
+   npm install
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4. Run the application:
+   ```bash
+   npm run dev
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Usage Instructions
+
+1. Open your browser and go to `http://localhost:3000` to access FoodHub.
+
+## Contributing Guidelines
+
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature-branch`).
+3. Make your changes and commit them (`git commit -m 'Add some feature'`).
+4. Push to the branch (`git push origin feature-branch`).
+5. Open a pull request.
+
+## License
+
+This project is licensed under the MIT License.
