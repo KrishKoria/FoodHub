@@ -4,17 +4,22 @@ import styles from "./page.module.css";
 import { shareMeal } from "@/lib/actions";
 import { useState } from "react";
 import MealsFormSubmit from "@/components/meals/mealsSubmitHandlers";
+import { Alert, AlertTitle } from "@mui/material";
+import { ErrorBoundary } from "next/dist/client/components/error-boundary";
 export default function ShareMealPage() {
   const [uploadedImage, setUploadedImage] = useState(null);
-
+  const [error, setError] = useState(null);
   const handleImageUpload = (imageInfo) => {
     setUploadedImage(imageInfo);
   };
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.target);
     formData.append("image_public_id", uploadedImage.public_id);
-    shareMeal(formData);
+    const res = await shareMeal(formData);
+    if (!res.success) {
+      setError(res.message);
+    }
   };
   return (
     <>
@@ -54,6 +59,12 @@ export default function ShareMealPage() {
             ></textarea>
           </p>
           <ImagePicker onImageUpload={handleImageUpload} />
+          {error && (
+            <Alert severity="error">
+              <AlertTitle>Error</AlertTitle>
+              {error}
+            </Alert>
+          )}
           <p className={styles.actions}>
             <MealsFormSubmit />
           </p>
