@@ -16,7 +16,6 @@ export async function GET(context) {
 
     return NextResponse.json({ success: true, data: meal });
   } catch (error) {
-    console.error(`Error fetching meal data for slug "${slug}":`, error);
     return NextResponse.json({
       success: false,
       message: "Internal Server Error",

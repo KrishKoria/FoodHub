@@ -6,7 +6,6 @@ export const revalidate = 1;
 export async function POST(req) {
   await dbConnect();
   const data = await req.json();
-  console.log("Data:", data);
   const createdMeal = new Meals({
     title: data.title,
     slug: data.slug,
@@ -16,7 +15,6 @@ export async function POST(req) {
     summary: data.summary,
     instructions: data.instructions,
   });
-  console.log("Created Meal:", createdMeal);
   try {
     const response = await createdMeal.save();
     return NextResponse.json({ success: true });

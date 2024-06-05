@@ -5,11 +5,15 @@ import styles from "./page.module.css";
 import { shareMeal } from "@/lib/actions";
 import { useState } from "react";
 import MealsFormSubmit from "@/components/meals/mealsSubmitHandlers";
-import { Alert, AlertTitle } from "@mui/material";
+import { Alert, AlertTitle, IconButton, Snackbar } from "@mui/material";
+import CloseIcon from "@mui/icons-material/Close";
+import { useRouter } from "next/navigation";
 
 export default function ShareMealPage() {
   const [uploadedImage, setUploadedImage] = useState(null);
   const [error, setError] = useState(null);
+  const [openAlert, setOpenAlert] = useState(false);
+  const router = useRouter();
 
   const handleImageUpload = (imageInfo) => {
     setUploadedImage(imageInfo);
@@ -22,15 +26,21 @@ export default function ShareMealPage() {
       formData.append("image_public_id", uploadedImage.public_id);
     } else {
       setError("Please upload an image.");
+      setOpenAlert(true);
       return;
     }
     const res = await shareMeal(formData);
     if (!res.success) {
       setError(res.message);
+      setOpenAlert(true);
     } else {
       setError(null);
-      // Handle successful submission (e.g., navigate to a success page or reset form)
+      router.push("/meals");
     }
+  };
+
+  const handleCloseAlert = () => {
+    setOpenAlert(false);
   };
 
   return (
@@ -71,12 +81,29 @@ export default function ShareMealPage() {
             ></textarea>
           </p>
           <ImagePicker onImageUpload={handleImageUpload} />
-          {error && (
-            <Alert severity="error">
+          <Snackbar
+            open={openAlert}
+            autoHideDuration={6000}
+            onClose={handleCloseAlert}
+            anchorOrigin={{ vertical: "top", horizontal: "center" }}
+          >
+            <Alert
+              severity="error"
+              action={
+                <IconButton
+                  aria-label="close"
+                  color="inherit"
+                  size="small"
+                  onClick={handleCloseAlert}
+                >
+                  <CloseIcon fontSize="inherit" />
+                </IconButton>
+              }
+            >
               <AlertTitle>Error</AlertTitle>
               {error}
             </Alert>
-          )}
+          </Snackbar>
           <p className={styles.actions}>
             <MealsFormSubmit />
           </p>
